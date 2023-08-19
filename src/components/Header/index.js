@@ -27,23 +27,29 @@ const Header = props => {
             />
           </Link>
         </div>
-        <div className="icons-container">
-          <Link to="/">
-            <AiOutlineHome color="white" size={20} />
+        <ul className="icons-container">
+          <Link to="/" className="link">
+            <li>
+              <AiOutlineHome color="white" size={20} />
+            </li>
           </Link>
-          <Link to="/jobs">
-            <BsBriefcase color="white" size={20} />
+          <Link to="/jobs" className="link">
+            <li>
+              <BsBriefcase color="white" size={20} />
+            </li>
           </Link>
-          <button type="button" className="logout-icon" onClick={onLogout}>
-            <FiLogOut color="white" size={20} />
-          </button>
-        </div>
+          <li>
+            <button type="button" className="logout-icon" onClick={onLogout}>
+              <FiLogOut color="white" size={20} />
+            </button>
+          </li>
+        </ul>
         <div className="buttons-container">
           <div className="menu-container">
-            <Link to="/">
+            <Link to="/" className="link">
               <p className="header-heading">Home</p>
             </Link>
-            <Link to="/jobs">
+            <Link to="/jobs" className="link">
               <p className="header-heading">Jobs</p>
             </Link>
           </div>

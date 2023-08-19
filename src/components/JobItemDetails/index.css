@@ -1,0 +1,13 @@
+.job-item-container {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 25px;
+}
+
+.skills-container {
+  list-style-type: none;
+}
+
+.similar-jobs {
+  list-style-type: none;
+}

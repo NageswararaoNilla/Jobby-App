@@ -1,0 +1,127 @@
+.jobs-container {
+  background-color: #000000;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.search-container {
+  background-color: transparent;
+  border: 1px solid #7e858e;
+  border-radius: 4px;
+  width: 80%;
+  max-width: 350px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+/* @media screen and (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+} */
+
+.desktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .desktop {
+    display: flex;
+  }
+}
+
+.search-input {
+  color: #ffffff;
+  background-color: transparent;
+  padding: 4px 12px;
+  border: none;
+  width: 95%;
+  outline: none;
+}
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-icon {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.profile-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  width: 80%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 24px;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+}
+
+.retry-btn {
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.line {
+  display: flex;
+  border: 1px solid #2c364c;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sub-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-text {
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.render-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 10px;
+  padding: 10px;
+}
+
+.job-box-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #202020;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffffff;
+}
