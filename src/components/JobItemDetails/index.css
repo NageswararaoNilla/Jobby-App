@@ -2,6 +2,10 @@
   background-color: #000000;
   color: #ffffff;
   padding: 25px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .skills-container {
@@ -10,4 +14,21 @@
 
 .similar-jobs {
   list-style-type: none;
+}
+
+.line-job {
+  display: flex;
+  border: 2px solid #475569;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.job-card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #202020;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }

@@ -112,10 +112,10 @@ class JobItemDetails extends Component {
             <p>{location}</p>
             <p>{employmentType}</p>
           </div>
-          <p>{packagePerAnnum}LPA</p>
+          <p>{packagePerAnnum}</p>
         </div>
-        <ht className="line" />
-        <div>
+        <hr className="line-job" />
+        <div className="display-flex-row">
           <h1>Description</h1>
           <a href={companyWebsiteUrl}>Visit</a>
         </div>
@@ -155,7 +155,7 @@ class JobItemDetails extends Component {
       jobDescription,
     } = jobData
     return (
-      <div className="job-box-container" key={id}>
+      <div className="job-card-container" key={id}>
         <div>
           <img src={companyLogoUrl} alt="similar job company logo" />
           <div>
