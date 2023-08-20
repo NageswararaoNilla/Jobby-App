@@ -2,6 +2,11 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 
+import {BsBriefcaseFill} from 'react-icons/bs'
+import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
+import {FiExternalLink} from 'react-icons/fi'
+
 import Header from '../Header'
 
 import './index.css'
@@ -100,38 +105,63 @@ class JobItemDetails extends Component {
     } = jobDetails
     return (
       <div className="job-box-container">
-        <div>
-          <img src={companyLogoUrl} alt="job details company logo" />
+        <div className="logo-title-container">
+          <img
+            src={companyLogoUrl}
+            alt="job details company logo"
+            className="company-logo"
+          />
           <div>
-            <h1>{title}</h1>
-            <p>{rating}</p>
+            <h1 className="job-title">{title}</h1>
+            <p className="job-rating">
+              <AiFillStar className="star" />
+              {rating}
+            </p>
           </div>
         </div>
-        <div>
-          <div>
-            <p>{location}</p>
-            <p>{employmentType}</p>
+        <div className="location-lpa-container">
+          <div className="type-container">
+            <p className="location-text">
+              <MdLocationOn className="location-icon" />
+              {location}
+            </p>
+            <p className="location-text">
+              <BsBriefcaseFill className="location-icon" />
+              {employmentType}
+            </p>
           </div>
-          <p>{packagePerAnnum}</p>
+          <p className="location-text">{packagePerAnnum}</p>
         </div>
         <hr className="line-job" />
-        <div className="display-flex-row">
-          <h1>Description</h1>
-          <a href={companyWebsiteUrl}>Visit</a>
+        <div className="description-link-container">
+          <h1 className="sub-heading">Description</h1>
+          <a
+            href={companyWebsiteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="visit-link"
+          >
+            Visit
+            <FiExternalLink className="link-icon" />
+          </a>
         </div>
 
         <p>{jobDescription}</p>
-        <h1>Skills</h1>
+        <h1 className="sub-heading">Skills</h1>
         <ul className="skills-container">
           {skills.map(eachSkill => (
-            <li key={eachSkill.name}>
-              <img src={eachSkill.imageUrl} alt={eachSkill.name} />
-              <p>{eachSkill.name}</p>
+            <li key={eachSkill.name} className="skill-container">
+              <img
+                src={eachSkill.imageUrl}
+                alt={eachSkill.name}
+                className="skill-img"
+              />
+              <p className="skill-name">{eachSkill.name}</p>
             </li>
           ))}
         </ul>
-        <h1>Life at Company</h1>
-        <div>
+        <h1 className="sub-heading">Life at Company</h1>
+        <div className="company-description-img-container">
           <p>{lifeAtCompanyDescription}</p>
           <img
             src={lifeAtCompanyImageUrl}
@@ -146,7 +176,6 @@ class JobItemDetails extends Component {
 
   renderSimilarJobs = jobData => {
     const {
-      id,
       companyLogoUrl,
       employmentType,
       title,
@@ -155,19 +184,32 @@ class JobItemDetails extends Component {
       jobDescription,
     } = jobData
     return (
-      <div className="job-card-container" key={id}>
-        <div>
-          <img src={companyLogoUrl} alt="similar job company logo" />
+      <div>
+        <div className="logo-title-container">
+          <img
+            src={companyLogoUrl}
+            alt="similar job company logo"
+            className="company-logo"
+          />
           <div>
-            <h1>{title}</h1>
-            <p>{rating}</p>
+            <h1 className="job-title">{title}</h1>
+            <p className="job-rating">
+              <AiFillStar className="star" />
+              {rating}
+            </p>
           </div>
         </div>
-        <h1>Description</h1>
+        <h1 className="sub-heading">Description</h1>
         <p>{jobDescription}</p>
-        <div>
-          <p>{location}</p>
-          <p>{employmentType}</p>
+        <div className="type-container">
+          <p className="location-text">
+            <MdLocationOn className="location-icon" />
+            {location}
+          </p>
+          <p className="location-text">
+            <BsBriefcaseFill className="location-icon" />
+            {employmentType}
+          </p>
         </div>
       </div>
     )
@@ -178,10 +220,12 @@ class JobItemDetails extends Component {
     return (
       <div>
         {this.renderJobDetails()}
-        <h1>Similar Jobs</h1>
-        <ul className="similar-jobs">
+        <h1 className="similar-jobs-heading">Similar Jobs</h1>
+        <ul className="similar-jobs-list">
           {similarJobs.map(eachJob => (
-            <li key={eachJob.id}>{this.renderSimilarJobs(eachJob)}</li>
+            <li className="job-card-container" key={eachJob.id}>
+              {this.renderSimilarJobs(eachJob)}
+            </li>
           ))}
         </ul>
       </div>

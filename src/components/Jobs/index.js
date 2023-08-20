@@ -1,8 +1,11 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {BsSearch} from 'react-icons/bs'
+import {BsSearch, BsBriefcaseFill} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
+
+import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
 
 import Header from '../Header'
 
@@ -171,8 +174,8 @@ class Jobs extends Component {
     return (
       <div className="profile-container">
         <img src={profileImageUrl} alt="profile" className="profile-img" />
-        <h1>{name}</h1>
-        <p>{shortBio}</p>
+        <h1 className="profile-name">{name}</h1>
+        <p className="profile-bio">{shortBio}</p>
       </div>
     )
   }
@@ -281,26 +284,36 @@ class Jobs extends Component {
     return (
       <li className="job-box-container" key={id}>
         <Link to={`/jobs/${id}`} className="link">
-          <div className="display-flex-row">
+          <div className="logo-title-container">
             <img
               src={companyLogoUrl}
               alt="company logo"
               className="company-logo"
             />
             <div>
-              <h1>{title}</h1>
-              <p>{rating}</p>
+              <h1 className="job-title">{title}</h1>
+              <p className="job-rating">
+                <AiFillStar className="star" />
+                {rating}
+              </p>
             </div>
           </div>
-          <div className="display-flex-row">
-            <div className="display-flex-row">
-              <p>{location}</p>
-              <p>{employmentType}</p>
+          <div className="location-lpa-container">
+            <div className="type-container">
+              <p className="location-text">
+                <MdLocationOn className="location-icon" />
+                {location}
+              </p>
+              <p className="location-text">
+                <BsBriefcaseFill className="location-icon" />
+                {employmentType}
+              </p>
             </div>
-            <p>{packagePerAnnum}</p>
+            <p className="location-text">{packagePerAnnum}</p>
           </div>
+
           <hr className="line" />
-          <h1>Description</h1>
+          <h1 className="description-heading">Description</h1>
           <p>{jobDescription}</p>
         </Link>
       </li>
@@ -323,7 +336,11 @@ class Jobs extends Component {
     if (jobsArray.length === 0) {
       return this.renderNoJobsView()
     }
-    return <ul> {jobsArray.map(eachJob => this.renderJobBox(eachJob))} </ul>
+    return (
+      <ul className="jobs-list">
+        {jobsArray.map(eachJob => this.renderJobBox(eachJob))}
+      </ul>
+    )
   }
 
   renderLoadingView = () => (

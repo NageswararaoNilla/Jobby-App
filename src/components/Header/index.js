@@ -1,7 +1,7 @@
 import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {AiOutlineHome} from 'react-icons/ai'
-import {BsBriefcase} from 'react-icons/bs'
+import {AiFillHome} from 'react-icons/ai'
+import {BsBriefcaseFill} from 'react-icons/bs'
 import {FiLogOut} from 'react-icons/fi'
 
 import './index.css'
@@ -30,12 +30,12 @@ const Header = props => {
         <ul className="icons-container">
           <Link to="/" className="link">
             <li>
-              <AiOutlineHome color="white" size={20} />
+              <AiFillHome color="white" size={20} />
             </li>
           </Link>
           <Link to="/jobs" className="link">
             <li>
-              <BsBriefcase color="white" size={20} />
+              <BsBriefcaseFill color="white" size={20} />
             </li>
           </Link>
           <li>
