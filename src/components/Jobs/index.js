@@ -133,11 +133,11 @@ class Jobs extends Component {
     }
   }
 
-  getRetryButton = () => (
-    <button type="button" className="retry-btn" onClick={this.getJobsApi}>
-      Retry
-    </button>
-  )
+  //   getRetryButton = api => (
+  //     <button type="button" className="retry-btn" onClick={api}>
+  //       Retry
+  //     </button>
+  //   )
 
   renderProfile = () => {
     const {profileDetailsObj} = this.state
@@ -152,38 +152,52 @@ class Jobs extends Component {
         </div>
       )
     }
-    return <div className="retry-btn-container">{this.getRetryButton()}</div>
+    return (
+      <div className="retry-btn-container">
+        <button
+          type="button"
+          className="retry-btn"
+          onClick={this.getProfileApi}
+        >
+          Retry
+        </button>
+      </div>
+    )
   }
 
   renderTypesOfEmployment = () => (
     <form className="form-container">
-      <h1 className="sub-heading">Types of Employment</h1>
-      {employmentTypesList.map(eachLabel => (
-        <div key={eachLabel.employmentTypeId}>
-          <input
-            type="checkbox"
-            id={eachLabel.employmentTypeId}
-            name="options[]"
-          />
-          <label htmlFor={eachLabel.employmentTypeId} className="label-text">
-            {eachLabel.label}
-          </label>
-        </div>
-      ))}
+      <h1 className="sub-heading">Type of Employment</h1>
+      <ul className="employment-types-list">
+        {employmentTypesList.map(eachLabel => (
+          <li key={eachLabel.employmentTypeId}>
+            <input
+              type="checkbox"
+              id={eachLabel.employmentTypeId}
+              name="options[]"
+            />
+            <label htmlFor={eachLabel.employmentTypeId} className="label-text">
+              {eachLabel.label}
+            </label>
+          </li>
+        ))}
+      </ul>
     </form>
   )
 
   renderSalaryRange = () => (
     <form className="form-container">
       <h1 className="sub-heading">Salary Range</h1>
-      {salaryRangesList.map(eachLabel => (
-        <div key={eachLabel.salaryRangeId}>
-          <input type="radio" id={eachLabel.salaryRangeId} />
-          <label htmlFor={eachLabel.salaryRangeId} className="label-text">
-            {eachLabel.label}
-          </label>
-        </div>
-      ))}
+      <ul className="salary-range-list">
+        {salaryRangesList.map(eachLabel => (
+          <li key={eachLabel.salaryRangeId}>
+            <input type="radio" id={eachLabel.salaryRangeId} />
+            <label htmlFor={eachLabel.salaryRangeId} className="label-text">
+              {eachLabel.label}
+            </label>
+          </li>
+        ))}
+      </ul>
     </form>
   )
 
@@ -194,6 +208,7 @@ class Jobs extends Component {
   }
 
   renderJobBox = jobDetails => {
+    // const {searchInput} = this.state
     const {
       id,
       companyLogoUrl,
@@ -205,7 +220,7 @@ class Jobs extends Component {
       packagePerAnnum,
     } = jobDetails
     return (
-      <div className="job-box-container">
+      <li className="job-box-container">
         <Link to={`/jobs/${id}`} className="link">
           <div>
             <img src={companyLogoUrl} alt="company logo" />
@@ -222,16 +237,30 @@ class Jobs extends Component {
             <p>{packagePerAnnum}LPA</p>
           </div>
           <ht className="line" />
-          <p>Description</p>
+          <h1>Description</h1>
           <p>{jobDescription}</p>
         </Link>
-      </div>
+      </li>
     )
   }
 
+  renderNoJobsView = () => (
+    <>
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+      />
+      <h1>No Jobs Found</h1>
+      <p>We could not find any jobs. Try other filters</p>
+    </>
+  )
+
   renderSuccessView = () => {
     const {jobsArray} = this.state
-    return jobsArray.map(eachJob => this.renderJobBox(eachJob))
+    if (jobsArray.length === 0) {
+      return this.renderNoJobsView()
+    }
+    return <ul> {jobsArray.map(eachJob => this.renderJobBox(eachJob))} </ul>
   }
 
   renderLoadingView = () => (
@@ -248,7 +277,9 @@ class Jobs extends Component {
       />
       <h1>Oops! Something Went Wrong</h1>
       <p>We cannot seem to find the page you are looking for.</p>
-      {this.getRetryButton()}
+      <button type="button" className="retry-btn" onClick={this.getJobsApi}>
+        Retry
+      </button>
     </>
   )
 
@@ -275,7 +306,7 @@ class Jobs extends Component {
           <div className="filters-container">
             <div className="mobile search-container">
               <input
-                type="text"
+                type="search"
                 placeholder="Search"
                 className="search-input"
                 onChange={this.onChangeSearchInput}
@@ -296,7 +327,25 @@ class Jobs extends Component {
             <hr className="line" />
             {this.renderSalaryRange()}
           </div>
-          <div className="render-view">{this.renderAllJobs()}</div>
+          <div className="render-view">
+            <div className="desktop search-container">
+              <input
+                type="search"
+                placeholder="Search"
+                className="search-input"
+                onChange={this.onChangeSearchInput}
+                value={searchInput}
+              />
+              <button
+                type="button"
+                className="search-button"
+                data-testid="searchButton"
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+            {this.renderAllJobs()}
+          </div>
         </div>
       </>
     )

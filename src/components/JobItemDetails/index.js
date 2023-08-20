@@ -86,7 +86,6 @@ class JobItemDetails extends Component {
   renderJobDetails = () => {
     const {jobDetails} = this.state
     const {
-      id,
       companyLogoUrl,
       companyWebsiteUrl,
       employmentType,
@@ -102,7 +101,7 @@ class JobItemDetails extends Component {
     return (
       <div className="job-box-container">
         <div>
-          <img src={companyLogoUrl} alt="company logo" />
+          <img src={companyLogoUrl} alt="job details company logo" />
           <div>
             <h1>{title}</h1>
             <p>{rating}</p>
@@ -125,7 +124,7 @@ class JobItemDetails extends Component {
         <h1>Skills</h1>
         <ul className="skills-container">
           {skills.map(eachSkill => (
-            <li key={id}>
+            <li key={eachSkill.name}>
               <img src={eachSkill.imageUrl} alt={eachSkill.name} />
               <p>{eachSkill.name}</p>
             </li>
@@ -136,7 +135,7 @@ class JobItemDetails extends Component {
           <p>{lifeAtCompanyDescription}</p>
           <img
             src={lifeAtCompanyImageUrl}
-            aria-hidden
+            // aria-hidden
             alt="life at company"
             className="company-img"
           />
@@ -182,7 +181,7 @@ class JobItemDetails extends Component {
         <h1>Similar Jobs</h1>
         <ul className="similar-jobs">
           {similarJobs.map(eachJob => (
-            <li>{this.renderSimilarJobs(eachJob)}</li>
+            <li key={eachJob.id}>{this.renderSimilarJobs(eachJob)}</li>
           ))}
         </ul>
       </div>
